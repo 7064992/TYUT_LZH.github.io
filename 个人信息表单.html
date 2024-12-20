@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息表单</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            width: 300px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            width: 48%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form id="personalForm">
+        <h2>请留下个人资料</h2>
+        <label for="name">姓名：</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">E-mail：</label>
+        <input type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
+
+        <label for="phone">电话：</label>
+        <input type="tel" id="phone" name="phone" pattern="\d{11}" required>
+
+        <label for="gender">性别：</label>
+        <input type="radio" id="female" name="gender" value="女" checked>
+        <label for="female">女</label>
+        <input type="radio" id="male" name="gender" value="男">
+        <label for="male">男</label>
+
+        <label for="age">年龄：</label>
+        <select id="age" name="age">
+            <option value="20以下" selected>20以下</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="25以上">25以上</option>
+        </select>
+
+        <label for="message">留言版：</label>
+        <textarea id="message" name="message" rows="4" cols="30"></textarea>
+
+        <label for="interests">您的爱好：</label>
+        <input type="checkbox" id="sports" name="interests" value="运动">
+        <label for="sports">运动</label>
+        <input type="checkbox" id="reading" name="interests" value="阅读">
+        <label for="reading">阅读</label>
+        <input type="checkbox" id="music" name="interests" value="听音乐">
+        <label for="music">听音乐</label>
+        <input type="checkbox" id="travel" name="interests" value="旅游">
+        <label for="travel">旅游</label>
+
+        <button type="submit">提交</button>
+        <button type="reset">全部重写</button>
+    </form>
+
+    <script>
+        document.getElementById('personalForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            if (!email.match("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")) {
+                alert("请输入有效的E-mail地址！");
+                return;
+            }
+
+            if (!phone.match("\\d{11}")) {
+                alert("请输入有效的电话号码（11位数字）！");
+                return;
+            }
+
+            this.submit();
+        });
+    </script>
+</body>
+</html>
